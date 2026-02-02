@@ -12,7 +12,7 @@ Some projects use custom file extensions that Neovim doesn't recognize. For exam
 
 ```lua
 {
-  'yourusername/filetypemap.nvim',
+  'eingin/filetypemap.nvim',
   event = 'VimEnter',
   opts = {},
 }
@@ -22,7 +22,7 @@ Some projects use custom file extensions that Neovim doesn't recognize. For exam
 
 ```lua
 use {
-  'yourusername/filetypemap.nvim',
+  'eingin/filetypemap.nvim',
   config = function()
     require('filetypemap').setup()
   end
