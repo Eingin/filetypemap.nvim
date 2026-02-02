@@ -71,9 +71,32 @@ On setup, the plugin:
 
 1. Checks if `.filetypemap` exists in `vim.fn.getcwd()`
 2. Parses extension mappings from the file
-3. Registers them using `vim.filetype.add()`
+3. Sets filetypes for matching buffers via autocmds
 
-This integrates with Neovim's built-in filetype detection system, so LSP, treesitter, and syntax highlighting all work correctly.
+When you change directories (`DirChanged` event), the plugin automatically:
+
+1. Loads the new directory's `.filetypemap` (if present)
+2. Resets any open buffers that were affected by old mappings back to Neovim's default detection
+3. Applies new mappings to relevant open buffers
+
+This ensures mappings are scoped to the current directory - switching projects won't leave stale mappings behind.
+
+## Development
+
+### Running Tests
+
+Tests use [mini.test](https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-test.md) from mini.nvim.
+
+```bash
+# Run all tests (downloads mini.nvim on first run)
+make test
+
+# Run a specific test file
+FILE=tests/test_filetypemap.lua make test_file
+
+# Clean dependencies
+make clean
+```
 
 ## License
 
